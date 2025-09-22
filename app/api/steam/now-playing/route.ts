@@ -39,8 +39,6 @@ export async function GET() {
     if (!key || !steamId) {
       return NextResponse.json({ error: "Missing env" }, { status: 500 });
     }
-
-    // Player summary (status + in-game)
     const sumRes = await fetch(
       `${API}/ISteamUser/GetPlayerSummaries/v0002/?key=${key}&steamids=${steamId}`,
       { cache: "no-store" }
@@ -53,8 +51,6 @@ export async function GET() {
 
     const inGame = Boolean(player.gameid);
     const status = mapStatus(player.personastate ?? 0, inGame);
-
-    // Son oynanan oyunları çek
     const recentRes = await fetch(
       `${API}/IPlayerService/GetRecentlyPlayedGames/v0001/?key=${key}&steamid=${steamId}&format=json`,
       { cache: "no-store" }
@@ -76,8 +72,7 @@ const recentGames: RecentGame[] = (recent?.response?.games ?? [] as SteamGame[])
     headerImage: `https://shared.akamai.steamstatic.com/store_item_assets/steam/apps/${g.appid}/header.jpg`,
   }));
 
-    // Eğer anlık oyun varsa onu öne al
-    let currentGameData = null;
+  let currentGameData = null;
     if (inGame && player.gameid) {
       currentGameData = {
         inGame: true,
@@ -95,7 +90,6 @@ const recentGames: RecentGame[] = (recent?.response?.games ?? [] as SteamGame[])
       });
     }
 
-    // Anlık oyun yoksa sadece en son oynanan oyun veya owned games
     const mostRecent = recentGames[0] ?? null;
 
     return NextResponse.json(

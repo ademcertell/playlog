@@ -14,7 +14,9 @@ type ActivityStatusProps = {
 function ActivityStatus({ label, className }: ActivityStatusProps) {
   return (
     <span
-      className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-900 ${className ?? ""}`}
+      className={`inline-flex items-center gap-1 px-2 py-1 rounded-full text-xs font-medium bg-gray-100 text-gray-900 ${
+        className ?? ""
+      }`}
     >
       {label}
     </span>
@@ -96,7 +98,6 @@ export default function Activity() {
       <div className="max-w-3xl mx-auto px-4">
         <div className="border border-gray-300 rounded-2xl p-6 bg-white shadow-sm">
           <div className="flex flex-col md:flex-row gap-6">
-            {/* Game Cover */}
             {data?.headerImage && (
               <div className="w-32 h-32 md:w-40 md:h-40 rounded-xl overflow-hidden flex-shrink-0">
                 <img
@@ -106,8 +107,6 @@ export default function Activity() {
                 />
               </div>
             )}
-
-            {/* Info */}
             <div className="flex-1 flex flex-col justify-between">
               <div>
                 <div className="mb-2 flex items-center gap-2">
@@ -134,8 +133,6 @@ export default function Activity() {
                   </p>
                 )}
               </div>
-
-              {/* Buttons */}
               <div className="mt-4 flex flex-wrap gap-3">
                 <motion.button
                   whileHover={{ scale: 1.03 }}
@@ -160,8 +157,6 @@ export default function Activity() {
               </div>
             </div>
           </div>
-
-          {/* Profile */}
           <div className="mt-6">
             <h4 className="text-sm font-medium text-gray-600 mb-2">Profile</h4>
             <div className="flex items-center gap-3">
@@ -182,8 +177,6 @@ export default function Activity() {
               </a>
             </div>
           </div>
-
-          {/* Recent Games */}
           {data?.recentGames && data.recentGames.length > 0 && (
             <div className="mt-6">
               <h4 className="text-sm font-medium text-gray-600 mb-2">
