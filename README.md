@@ -17,8 +17,6 @@ This project is a **Next.js client component** that displays the current Steam a
 
 ## Installation
 
-1. Clone the repository:
-
 ```bash
 git clone https://github.com/yourusername/steam-activity-component.git
 
